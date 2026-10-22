@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manhcuong5311-hue.github.io/sitemap.xml

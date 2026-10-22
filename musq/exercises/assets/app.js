@@ -119,6 +119,48 @@
     vids.forEach((v) => io.observe(v));
   }
 
+  // ---- library: search, equipment filter ----
+  const tools = document.querySelector('[data-library]');
+  if (tools) {
+    const input = tools.querySelector('input[type="search"]');
+    const chips = tools.querySelectorAll('[data-equip]');
+    const rows = [...document.querySelectorAll('.lib-row')];
+    const groups = [...document.querySelectorAll('.lib-group')];
+    const empty = document.querySelector('.lib-empty');
+    let equip = 'all';
+    const apply = () => {
+      const words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      rows.forEach((r) => {
+        const ok = words.every((w) => r.dataset.search.includes(w)) && (equip === 'all' || r.dataset.equip === equip);
+        r.hidden = !ok;
+        if (ok) shown += 1;
+      });
+      groups.forEach((g) => {
+        const n = g.querySelectorAll('.lib-row:not([hidden])').length;
+        g.hidden = n === 0;
+        g.querySelector('[data-n]').textContent = n;
+      });
+      empty.hidden = shown > 0;
+    };
+    input.addEventListener('input', apply);
+    chips.forEach((c) => c.addEventListener('click', () => {
+      equip = c.dataset.equip;
+      chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+      apply();
+    }));
+  }
+
+  // ---- exercises without a web guide: they're in the app ----
+  const sheet = document.getElementById('app-sheet');
+  if (sheet && sheet.showModal) {
+    document.querySelectorAll('[data-in-app]').forEach((b) => b.addEventListener('click', () => {
+      sheet.querySelector('[data-sheet-name]').textContent = b.dataset.inApp;
+      sheet.showModal();
+    }));
+    sheet.addEventListener('click', (ev) => { if (ev.target === sheet) sheet.close(); });
+  }
+
   // ---- owner switch on /musq/waitlist/ ----
   const sw = document.querySelector('[data-owner-switch]');
   if (sw) {

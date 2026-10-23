@@ -249,19 +249,20 @@ p { margin: 0; }
 .feature p { color: var(--muted); font-size: 14.5px; }
 .feature .big { font: 700 32px/1 var(--sans); letter-spacing: -.03em; }
 
-/* ---------- x-ray showcase ---------- */
-.xray { display: grid; gap: 32px; align-items: center; margin-top: 72px; }
-@media (min-width: 900px) { .xray { grid-template-columns: 340px minmax(0, 1fr); gap: 64px; } }
+/* ---------- app demos: screen recordings in a phone ---------- */
+.demos { margin-top: 72px; }
+.demos-head { max-width: 640px; margin: 0 auto 34px; text-align: center; }
+.demo-grid { display: grid; gap: 48px; }
+@media (min-width: 760px) { .demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start; } }
+.demo { margin: 0; display: grid; gap: 20px; justify-items: center; }
+.demo figcaption { max-width: 340px; text-align: center; color: var(--text-2); font-size: 15px; }
+.demo figcaption b { display: block; color: var(--text); font-size: 18px; letter-spacing: -.01em; margin-bottom: 6px; }
 .phone {
   width: min(320px, 78vw); margin: 0 auto; padding: 10px;
   border-radius: 48px; background: linear-gradient(160deg, #3a3e44, #15171a 60%);
   box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .9), inset 0 0 0 1px rgba(255, 255, 255, .12);
 }
 .phone video { width: 100%; aspect-ratio: 720 / 1566; border-radius: 39px; background: #101113; object-fit: cover; }
-.xray ul { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
-.xray li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; color: var(--text-2); }
-.xray li b { color: var(--text); display: block; }
-.xray li .n { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(255, 255, 255, .07); font: 700 13px var(--mono); color: var(--text); }
 
 /* ---------- hub ---------- */
 .hero { display: grid; gap: 32px; padding: 34px 0 10px; }
